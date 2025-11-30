@@ -79,8 +79,34 @@ $ git commit -m "feat: argrega punto 2"
 ```{r}
 
 moras %>% 
-  summarise(porcentaje_na_salario=sum(is.na(SALARIO))/length(SALARIO),
+  summarise(porcentaje_na_sexo=sum(is.na(SEXO))/length(SEXO),
+            porcentaje_na_salario=sum(is.na(SALARIO))/length(SALARIO),
+            porcentaje_na_aseguramiento=sum(is.na(TIPO_ASEGURAMIENTO))/length(TIPO_ASEGURAMIENTO),
+            porcentaje_na_sector=sum(is.na(SECTOR))/length(SECTOR),
+            porcentaje_na_activo=sum(is.na(INDICADOR_ACTIVO))/length(INDICADOR_ACTIVO),
+            porcentaje_na_extranjero=sum(is.na(INDICADOR.EXTRANJERO))/length(INDICADOR.EXTRANJERO),
+            porcentaje_na_moroso=sum(is.na(INDICADOR_MOROSO))/length(INDICADOR_MOROSO),
             porcentaje_na_edad=sum(is.na(EDAD))/length(EDAD))
+
+
+
+```
+
+$ git add Examen_I_G2-C30244-JoseAlfaro.qmd
+$ git commit -m "feat: agrega punto 4"
+
+5)
+hay valores faltantes en
+
+SALARIO
+TIPO_ASEGURAMIENTO
+EDAD
+
+```{r}
+moras <- moras %>% 
+  mutate(SALARIO=ifelse(is.na(SALARIO),mean(SALARIO,na.rm=TRUE),SALARIO),
+         TIPO_ASEGURAMIENTO=ifelse(is.na(TIPO_ASEGURAMIENTO),"ASALARIADO",TIPO_ASEGURAMIENTO),
+         EDAD=ifelse(is.na(EDAD),mean(EDAD,na.rm=TRUE),EDAD))
 
 
 

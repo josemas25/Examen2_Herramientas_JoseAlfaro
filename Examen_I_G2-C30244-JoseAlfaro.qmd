@@ -112,3 +112,70 @@ moras <- moras %>%
 
 ```
 
+$ git add Examen_I_G2-C30244-JoseAlfaro.qmd
+$ git commit -m "feat: agraga punto 5"
+
+
+6)
+
+```{r}
+theme_set(theme_minimal())
+
+moras %>% 
+  ggplot(aes(x=SEXO))+
+  geom_bar(fill="blue")+
+  labs(title = "Cantidad de individuos por sexo",
+       x="Sexo",
+       y="Cantidad")
+
+moras %>% 
+  ggplot(aes(x=SALARIO))+
+  geom_histogram(fill="blue")+
+  labs(title = "Cantidad de individuos por salario",
+       x="Salario",
+       y="Cantidad")
+
+moras %>% 
+  ggplot(aes(x=TIPO_ASEGURAMIENTO))+
+  geom_bar(fill="blue")+
+  coord_flip() +
+  labs(title = "Cantidad de individuos por seguro",
+       x="Seguro",
+       y="Cantidad")
+
+moras %>% 
+  ggplot(aes(x=SECTOR))+
+  geom_bar(fill="blue")+
+  labs(title = "Cantidad de individuos por sector",
+       x="Sector",
+       y="Cantidad")
+
+moras %>% 
+  ggplot(aes(x=INDICADOR_ACTIVO))+
+  geom_bar(fill="blue")+
+  labs(title = "Cantidad de individuos segun es seguro activo",
+       x="Activo",
+       y="Cantidad")
+moras %>% 
+  ggplot(aes(x=INDICADOR.EXTRANJERO))+
+  geom_bar(fill="blue")+
+  labs(title = "Cantidad de individuos segun si es extranjero",
+       x="Extranjero",
+       y="Cantidad")
+moras %>% 
+  ggplot(aes(x=INDICADOR_MOROSO))+
+  geom_bar(fill="blue")+
+  labs(title = "Cantidad de individuos segun si es moroso",
+       x="Moroso",
+       y="Cantidad")
+moras %>% 
+  ggplot(aes(x=EDAD))+
+  geom_histogram(fill="blue")+
+  labs(title = "Cantidad de individuos por edad",
+       x="Edad",
+       y="Cantidad")
+
+```
+
+
+

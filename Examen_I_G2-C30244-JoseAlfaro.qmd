@@ -9,9 +9,16 @@ editor: visual
 
 $ touch .gitignore
 
-pego lo siguiente en el .gitignore .Rhistory .RData .Ruserdata
+pego lo siguiente en el .gitignore
+
+.Rhistory 
+
+.RData 
+
+.Ruserdata
 
 $ git add .
+
 $ git commit - m "feat: Agrega archivo .gitignore y Examen_I_G2-C30244-JoseAlfaro.xlsx"
 
 ### Librerias
@@ -55,6 +62,7 @@ moras %>%
 ```
 
 $ git add .
+
 $ git commit -m "feat: agrega el archibo qmd con el punto 2"
 
 3)  
@@ -71,6 +79,7 @@ moras %>%
 ```
 
 $ git add Examen_I_G2-C30244-JoseAlfaro.qmd 
+
 $ git commit -m "feat: argrega punto 2"
 
 
@@ -93,6 +102,7 @@ moras %>%
 ```
 
 $ git add Examen_I_G2-C30244-JoseAlfaro.qmd
+
 $ git commit -m "feat: agrega punto 4"
 
 5)
@@ -113,6 +123,7 @@ moras <- moras %>%
 ```
 
 $ git add Examen_I_G2-C30244-JoseAlfaro.qmd
+
 $ git commit -m "feat: agraga punto 5"
 
 
@@ -156,18 +167,21 @@ moras %>%
   labs(title = "Cantidad de individuos segun es seguro activo",
        x="Activo",
        y="Cantidad")
+
 moras %>% 
   ggplot(aes(x=INDICADOR.EXTRANJERO))+
   geom_bar(fill="blue")+
   labs(title = "Cantidad de individuos segun si es extranjero",
        x="Extranjero",
        y="Cantidad")
+
 moras %>% 
   ggplot(aes(x=INDICADOR_MOROSO))+
   geom_bar(fill="blue")+
   labs(title = "Cantidad de individuos segun si es moroso",
        x="Moroso",
        y="Cantidad")
+
 moras %>% 
   ggplot(aes(x=EDAD))+
   geom_histogram(fill="blue")+
@@ -177,5 +191,146 @@ moras %>%
 
 ```
 
+$ git add Examen_I_G2-C30244-JoseAlfaro.qmd
+
+$ git commit -m "feat: agraga punto 6"
+
+
+7)
+
+```{r}
+morosos <- moras %>% 
+  filter(INDICADOR_MOROSO=="SI")
+
+morosos %>% 
+  group_by(SEXO) %>% 
+  summarise(porcentaje=n()/nrow(moras)*100) %>% 
+  ggplot(aes(x=SEXO,y=porcentaje))+
+  geom_col(fill="blue")+
+  labs(title = "porcentaje de morosos por sexo",
+       x="Sexo",
+       y="Porcentaje")
+
+morosos %>% 
+  group_by(TIPO_ASEGURAMIENTO) %>% 
+  summarise(porcentaje=n()/nrow(moras)*100) %>% 
+  ggplot(aes(x=TIPO_ASEGURAMIENTO,y=porcentaje))+
+  geom_col(fill="blue")+
+  coord_flip()+
+  labs(title = "porcentaje de morosos por seguro",
+       x="Seguro",
+       y="Porcentaje")
+
+morosos %>% 
+  group_by(SECTOR) %>% 
+  summarise(porcentaje=n()/nrow(moras)*100) %>% 
+  ggplot(aes(x=SECTOR,y=porcentaje))+
+  geom_col(fill="blue")+
+  labs(title = "porcentaje de morosos por sector",
+       x="Sector",
+       y="Porcentaje")
+
+morosos %>% 
+  group_by(INDICADOR_ACTIVO) %>% 
+  summarise(porcentaje=n()/nrow(moras)*100) %>% 
+  ggplot(aes(x=INDICADOR_ACTIVO,y=porcentaje))+
+  geom_col(fill="blue")+
+  labs(title = "porcentaje de morosos segun si el seguro esta activo",
+       x="Activo",
+       y="Porcentaje")
+
+morosos %>% 
+  group_by(INDICADOR.EXTRANJERO) %>% 
+  summarise(porcentaje=n()/nrow(moras)*100) %>% 
+  ggplot(aes(x=INDICADOR.EXTRANJERO,y=porcentaje))+
+  geom_col(fill="blue")+
+  labs(title = "porcentaje de morosos segun si es extranjero",
+       x="Extrangero",
+       y="Porcentaje")
+
+
+```
+
+
+$ git add Examen_I_G2-C30244-JoseAlfaro.qmd
+
+$ git conmmit -m "feat: agraga punto 7"
+
+
+8)
+
+```{r}
+moras_rangos <- moras %>% 
+  mutate(RANGO_EDAD=case_when(
+    EDAD<=30 ~ "18-30",
+    EDAD<=45 ~ "31-45",
+    EDAD<=60 ~ "46-60",
+    EDAD<=75 ~ "61-75",
+    TRUE ~ "76-100+"
+  ))
+
+moras_rangos %>% 
+  group_by(RANGO_EDAD ,INDICADOR_MOROSO) %>% 
+  summarise(cantidad=n()) %>% 
+  ggplot(aes(x=RANGO_EDAD,y=cantidad, fill = INDICADOR_MOROSO))+
+  geom_col(position = "dodge")+
+  labs(title = "Cantidad de morosos por edad",
+       x="Edad",
+       y="Cantidad")
+
+moras_rangos <- moras %>% 
+  mutate(RANGO_SALARIO=case_when(
+    SALARIO<4e5 ~ "1) 0-4e5",
+    SALARIO<8e5 ~ "2) 4e5-8e5",
+    SALARIO<12e5 ~ "3) 8e5-12e5",
+    SALARIO<2e6 ~ "4) 12e5-2e6",
+    TRUE ~ "5) 2e6+"
+  ))
+
+moras_rangos %>% 
+  group_by(RANGO_SALARIO ,INDICADOR_MOROSO) %>% 
+  summarise(cantidad=n()) %>% 
+  ggplot(aes(x=RANGO_SALARIO,y=cantidad, fill = INDICADOR_MOROSO))+
+  geom_col(position = "dodge")+
+  labs(title = "Cantidad de morosos por salario",
+       x="Salario",
+       y="Cantidad")
+
+
+```
+
+$ git add Examen_I_G2-C30244-JoseAlfaro.qmd
+
+$ git commit -m "feat: agrega punto 8"
+
+10)
+
+```{r}
+moras <- moras %>% 
+  mutate(TIPO_ASEGURAMIENTO=case_when(
+    TIPO_ASEGURAMIENTO=="ASALARIADO"~ "AS",
+    TIPO_ASEGURAMIENTO=="PENSIONADOS EN SU PROPIO SISTEMA"~"PESPS",
+    TIPO_ASEGURAMIENTO=="TRABAJADOR INDEPENDIENTE"~"TI",
+    TIPO_ASEGURAMIENTO=="CONVENIOS ESPECIALES DE TRABAJADORES INDEPENDIENTES"~"CEDTI",
+    TIPO_ASEGURAMIENTO=="CONVENIOS ESPECIALES DE ASEGURADOS VOLUNTARIOS"~"CEDAV",
+    TIPO_ASEGURAMIENTO=="ASEGURADO VOLUNTARIO"~"AV"
+  ))
+
+#| eval: false
+ library(rpart)
+ library(rpart.plot)
+ tree <- rpart(INDICADOR_MOROSO~., data = moras)
+ rpart.plot(tree)
+
+
+
+```
+
+  Vemos que el arbol parte de los tipos de aseguramiento, eso significa que esta es la variable que tuvo mas relacion con las personas que son morosas o no. Esto puede se porque la morosidad se reparte en los tipos de aseguramiento. El arbol continua con una rama de extranjero, donde vemos que si es extrangero hay una probabilidad del 56% de ser moroso. Luego se divide por el salario, si el salario es menor que 304000 hay una probabilidad de 40% de ser moroso, si el salario es mayor hay probabilidad de 58%.
+
+
+$ git add add Examen_I_G2-C30244-JoseAlfaro.qmd
+
+$ git commit -m "feat: agrega punto 10"
 
 

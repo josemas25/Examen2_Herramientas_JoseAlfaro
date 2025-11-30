@@ -1,0 +1,70 @@
+---
+title: "Examen FInal"
+author: "Jose Manuel Alfaro S C30244"
+format: html
+editor: visual
+---
+
+## Creacion del git ignore
+
+  $ touch .gitignore
+  
+  pego lo siguiente en el .gitignore
+  .Rhistory
+  .RData
+  .Ruserdata
+  
+  $ git add .
+  $ git commit - m "feat: Agrega archivo .gitignore y Examen_I_G2 - C30244.xlsx"
+
+
+### Librerias
+
+```{r}
+library(tidyverse)
+library(readxl)
+
+
+```
+
+### Carga de datos
+
+```{r}
+moras <- read_xlsx("moras.xlsx")
+
+```
+
+## Puntos de Excel en R
+
+2)
+
+```{r}
+moras %>% 
+  summarise(minimo_salario=min(SALARIO,na.rm=TRUE),
+            minimo_edad=min(EDAD,na.rm=TRUE),
+            cuartil1_salario=quantile(SALARIO,0.25,na.rm=TRUE),
+            cuartil1_edad=quantile(EDAD,0.25,na.rm=TRUE),
+            mediana_salario=median(SALARIO,na.rm = TRUE),
+            mediana_edad=median(EDAD,na.rm = TRUE),
+            cuartil3_salario=quantile(SALARIO,0.75,na.rm=TRUE),
+            cuartil3_edad=quantile(EDAD,0.75,na.rm=TRUE),
+            max_salario=max(SALARIO,na.rm = TRUE),
+            max_edad=max(EDAD,na.rm = TRUE),
+            promedio_salario=mean(SALARIO,na.rm=TRUE),
+            promedio_edad=mean(EDAD,na.rm=TRUE))
+
+
+
+
+```
+
+3)
+
+```{r}
+
+
+
+
+
+```
+

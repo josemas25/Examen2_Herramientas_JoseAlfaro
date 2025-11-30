@@ -7,16 +7,11 @@ editor: visual
 
 ## Creacion del git ignore
 
-  $ touch .gitignore
-  
-  pego lo siguiente en el .gitignore
-  .Rhistory
-  .RData
-  .Ruserdata
-  
-  $ git add .
-  $ git commit - m "feat: Agrega archivo .gitignore y Examen_I_G2 - C30244.xlsx"
+\$ touch .gitignore
 
+pego lo siguiente en el .gitignore .Rhistory .RData .Ruserdata
+
+\$ git add . \$ git commit - m "feat: Agrega archivo .gitignore y Examen_I_G2 - C30244.xlsx"
 
 ### Librerias
 
@@ -36,7 +31,7 @@ moras <- read_xlsx("moras.xlsx")
 
 ## Puntos de Excel en R
 
-2)
+2)  
 
 ```{r}
 moras %>% 
@@ -58,11 +53,17 @@ moras %>%
 
 ```
 
+$ git add .
+$ git commit -m "feat: agrega el archibo qmd con el punto 2"
+
 3)
 
 ```{r}
-
-
+moras %>% 
+  mutate(ZSCORE_SALARIO=(SALARIO-mean(SALARIO,na.rm=TRUE))/sd(SALARIO,na.rm = TRUE),
+         ZSCORE_EDAD=(EDAD-mean(EDAD,na.rm=TRUE))/sd(EDAD,na.rm = TRUE),
+         ES_ATIPICO_SALARIO=ifelse(abs(ZSCORE_SALARIO)>1.96,"SI","NO"),
+         ES_ATIPICO_EDAD=ifelse(abs(ZSCORE_EDAD)>1.96,"SI","NO"))
 
 
 

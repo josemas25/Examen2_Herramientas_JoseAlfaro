@@ -7,11 +7,12 @@ editor: visual
 
 ## Creacion del git ignore
 
-\$ touch .gitignore
+$ touch .gitignore
 
 pego lo siguiente en el .gitignore .Rhistory .RData .Ruserdata
 
-\$ git add . \$ git commit - m "feat: Agrega archivo .gitignore y Examen_I_G2 - C30244.xlsx"
+$ git add .
+$ git commit - m "feat: Agrega archivo .gitignore y Examen_I_G2-C30244-JoseAlfaro.xlsx"
 
 ### Librerias
 
@@ -56,7 +57,7 @@ moras %>%
 $ git add .
 $ git commit -m "feat: agrega el archibo qmd con el punto 2"
 
-3)
+3)  
 
 ```{r}
 moras %>% 
@@ -64,6 +65,22 @@ moras %>%
          ZSCORE_EDAD=(EDAD-mean(EDAD,na.rm=TRUE))/sd(EDAD,na.rm = TRUE),
          ES_ATIPICO_SALARIO=ifelse(abs(ZSCORE_SALARIO)>1.96,"SI","NO"),
          ES_ATIPICO_EDAD=ifelse(abs(ZSCORE_EDAD)>1.96,"SI","NO"))
+
+
+
+```
+
+$ git add Examen_I_G2-C30244-JoseAlfaro.qmd 
+$ git commit -m "feat: argrega punto 2"
+
+
+4)
+
+```{r}
+
+moras %>% 
+  summarise(porcentaje_na_salario=sum(is.na(SALARIO))/length(SALARIO),
+            porcentaje_na_edad=sum(is.na(EDAD))/length(EDAD))
 
 
 
